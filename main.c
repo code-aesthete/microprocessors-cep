@@ -78,106 +78,6 @@ int main(void)
 
     int temp = 110;	  // for temperature
 
-    char buffer[25];
-    LCD_init();
-    LCD_gotoxy(1,1);
-    LCD_Send_Array("Please Select: ");
-    _delay_ms(500);
-    LCD_init();
-    LCD_Send_Array("Micro or Grill");
-    oneSecondDelay();
-    while (1)
-    {
-        oneSecondDelay();
-        if ((PIND & MICRO))
-        {
-            LCD_init();
-            LCD_Send_Array("Micro selected");
-            oneSecondDelay();
-            LCD_init();
-            LCD_gotoxy(1,1);
-            LCD_Send_Array("Enter");
-            LCD_gotoxy(1,2);
-            LCD_Send_Array("Temperature");
-            oneSecondDelay();
-            sprintf(buffer, "Temp %d oC", temp);  // this will show default temperature, which is 110 oC
-            LCD_init();
-            LCD_Send_Array(buffer);
-            oneSecondDelay();
-            while (1)
-            {
-
-                if((PIND & TEMPERATURE))
-                {
-                    temp += 20;
-                    if(temp > 240)
-                        temp = 110;
-                    char buffer[25];
-                    sprintf(buffer, "Temp %d oC", temp);
-                    LCD_init();
-                    LCD_Send_Array(buffer);
-                    oneSecondDelay();
-                }
-                else if (!(PINC & SWITCHED_OFF ))
-                {
-                    break;
-                }
-                else
-                {
-                    LCD_gotoxy(1,2);
-                    LCD_Send_Array("Press Timer/Temp");
-                }
-            }
-            _delay_ms(250);
-            break;
-        }
-        else if((PIND & GRILL))
-        {
-            LCD_init();
-            LCD_gotoxy(1,1);
-            LCD_Send_Array("Grill selected");
-            oneSecondDelay();
-            LCD_init();
-            LCD_gotoxy(1,1);
-            LCD_Send_Array("Enter");
-            LCD_gotoxy(1,2);
-            LCD_Send_Array("Temperature:");
-            oneSecondDelay();
-            sprintf(buffer, "Temp %d oC", temp);  // this will show default temperature, which is 110 oC
-            LCD_init();
-            LCD_Send_Array(buffer);
-            oneSecondDelay();
-            while (1)
-            {
-
-                if((PIND & TEMPERATURE))
-                {
-                    temp += 20;
-                    if(temp > 240)
-                        temp = 110;
-
-                    char buffer[25];
-                    sprintf(buffer, "Temp %d oC", temp);
-                    LCD_init();
-                    LCD_Send_Array(buffer);
-                    oneSecondDelay();
-                }
-                else if (!(PINC & SWITCHED_OFF ))
-                {
-                    break; // if timer button is pressed, jump to that portion of code
-                }
-                else
-                {
-                    LCD_gotoxy(1,2);
-                    LCD_Send_Array("Press Timer/Temp");
-                }
-            }
-            _delay_ms(250);
-            break;
-        }
-    }
-
-
     while(1)
     {
         // we have used some push buttons with pull-up resistors enabled
@@ -200,13 +100,6 @@ int main(void)
 
             if(counter > 240)
                 counter = 0;
-
-            char buffer[25];
-            sprintf(buffer, "Time: %d sec", counter);
-            LCD_init();
-            LCD_Send_Array(buffer);
-            oneSecondDelay(); // 1 second delay
-
 
             if(!(PINC & START_OFF))
             {
