@@ -7,14 +7,7 @@
 
 // MPSI COMPLEX ENGINEERING PROBLEM
 //
-// GROUP MEMBERS
-// Haseeb Ahmad		FA18-BEE-050-5A
-// Farrukh Mumtaz	FA18-BEE-037-5A
-// Abdullah Bin Tahir	FA18-BEE-009-5A
 
-// INSTRUCTORS
-// Sir Dr Irfan Ullah
-// Ma'am Asma Ramay
 
 
 #include <avr/io.h>
